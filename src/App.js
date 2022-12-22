@@ -1,13 +1,31 @@
+import React from "react";
 import ClickCounter from "./components/ClickCounter";
-import HoverClick from "./components/HoverClick";
+import Counter from "./components/Counter";
+import Section from "./components/Section";
+import ThemeContext from "./Context/themeContext";
 
-function App() {
-  return (
-    <div className="App">
-      <ClickCounter></ClickCounter>
-      <HoverClick></HoverClick>
-    </div>
-  );
+export default class App extends React.Component {
+
+  state = {
+    theme : 'dark'
+  }
+
+  render () {
+    const {theme} = this.state 
+    return (
+      <div className="App">
+        <Counter >
+            { (count, incrementCount) => (<ClickCounter count={count} incrementCount= {incrementCount} />) }
+        </Counter>
+
+        <ThemeContext.Provider value={{theme}}>
+            <Section />
+        </ThemeContext.Provider>
+      </div>
+    );
+  }
 }
 
-export default App;
+
+//in js function is an object
+// in react js a function can pass as props like object,string,number etc 
